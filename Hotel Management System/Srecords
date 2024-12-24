@@ -1,0 +1,20 @@
+#ifndef SRECORDS_H
+#define SRECORDS_H
+
+void main_menu();
+
+typedef struct 
+{
+    char firstname[50];
+    char lastname[50];
+    int adults;
+    int infants;
+    char room[10];
+    long int phoneno;
+    char checkin[11];
+    int day;
+    int rooms;
+}records ;
+
+records book;
+#endif
