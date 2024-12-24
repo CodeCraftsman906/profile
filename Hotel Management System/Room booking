@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "Srecords.h"
+void main_menu(void);
+int roombook()
+{
+    int rrate=0,days=0;
+    FILE *file;
+
+    printf("Enter First Name ");
+    scanf("%99s",book.firstname);
+
+    printf("Enter Last Name ");
+    scanf("%99s",book.lastname);
+
+    printf("Enter no. of adults");
+    scanf("%d",&book.adults);
+
+    printf("Enter no. of infants");
+    scanf("%d",&book.infants);
+
+    printf("Enter room type (Standard,Deluxe,Suite)");
+    scanf("%s",book.room);
+
+    printf("Enter contact no.");
+    scanf("%ld",&book.phoneno);
+
+    printf("Enter check in date (YYYY/MM/DD)");
+    scanf("%s",book.checkin);
+
+    printf("Enter no. of Days");
+    scanf("%d",&book.day);
+
+    if (book.adults % 2 == 0) 
+    {
+        book.rooms = book.adults / 2;
+    }
+    else 
+    {
+        book.rooms = (book.adults / 2) + 1;
+    }
+
+    file=fopen("records.txt","a");
+    if (file == NULL)
+    {
+        printf("Error opening file!\n");
+    }
+    fprintf(file, " %s,%s, %d, %d , %d , %s , %s , %d, %d \n", book.firstname,book.lastname, book.phoneno, book.adults,
+            book.infants, book.room, book.checkin, book.day,book.rooms);
+    fclose(file);
+    printf("\nBooking Confirmed\n");
+    printf("Booking Information\n");
+    printf("name: %s %s\n",book.firstname,book.lastname); 
+    printf("Contact no.: %ld\n",book.phoneno);
+    printf("No. of Adult: %d\n",book.adults);
+    printf("No. of Infants: %d\n",book.infants);
+    printf("Room Type: %s\n",book.room);
+    printf("No. of Rooms: %d\n",book.rooms);
+    printf("Check-in Date:  %s\n",book.checkin);
+    printf("No. of Days: %d\n",book.day);
+    printf("\n");
+    main_menu();
+}
