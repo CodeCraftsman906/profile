@@ -1,0 +1,190 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "Srecords.h"
+
+void main_menu(void);
+void search(void);
+void update(void);
+void cancle(void);
+
+void manage()
+{
+    int c;
+    while (1) 
+    {
+        printf("1) Search Booking\n");
+        printf("2) update Booking\n");
+        printf("3) cancle Booking\n");
+        printf("4) exit\n");
+        printf("Enter choice: ");
+        scanf("%d", &c);
+        switch (c)
+        {
+            case 1:
+                search();
+                break;
+            case 2:
+                update();
+                break;
+            case 3:
+                cancle();
+                break;
+            case 4:
+                main_menu();
+            default:
+                printf("Invalid choice! Please try again.\n");
+        }
+    }
+}
+
+
+void search() 
+{
+    records book;
+    FILE *file;
+    char buffer[256],name[100];
+    int found = 0;
+
+    printf("Enter First Name of record to view: ");
+    scanf("%s",name);
+
+    file = fopen("records.txt", "r");
+    if (file == NULL)
+    {
+        printf("No bookings found!\n");
+        return;
+    }
+
+    while (fgets(buffer, sizeof(buffer), file) != NULL)
+    {
+        if (strstr(buffer, name) != NULL)
+        {
+            printf("------------------------------------\n");
+            printf("%s\n", buffer);
+            printf("------------------------------------\n");
+            found = 1;
+        }
+    }
+
+    if (!found) 
+    {
+        printf("No booking found in name of  %s.\n", name);
+    }
+
+    fclose(file);
+}
+
+void update()
+{
+    FILE *file, *tempFile;
+    char buffer[256],name[100];
+    int found = 0;
+
+    printf("Enter First Name of the Booking to Update: ");
+    scanf("%s", name);
+
+    file = fopen("records.txt", "r");
+    tempFile = fopen("temp.txt", "w");
+
+    if (file == NULL || tempFile == NULL)
+    {
+        printf("No booking found");
+        return;
+    }
+
+    while (fgets(buffer, sizeof(buffer), file) != NULL) 
+    {
+        if (strstr(buffer, name) != NULL)
+        {
+            printf("Booking Found: %s\n", buffer);
+            printf("Enter Updated Details:\n");
+            printf("Enter First Name: ");
+            scanf("%49s", book.firstname);
+            printf("Enter Last Name: ");
+            scanf("%49s", book.lastname);
+            printf("Enter Contact Number: ");
+            scanf("%d", &book.phoneno);
+            printf("Enter Number of Adults: ");
+            scanf("%d", &book.adults);
+            printf("Enter Number of Infants: ");
+            scanf("%d", &book.infants);
+            printf("Enter Room Type (Single, Standard, Deluxe, Suite): ");
+            scanf("%19s", book.room);
+            printf("Enter Check-in Date (YYYY/MM/DD): ");
+            scanf("%10s", book.checkin);
+            printf("Enter Number of Days for Stay: ");
+            scanf("%d", &book.day);
+
+            fprintf(tempFile, "%s,%s, %d, %d, %d, %s, %s, %d\n", book.firstname , book.lastname , book.phoneno,
+                    book.adults, book.infants, book.room, book.checkin, book.day);
+            found = 1;
+        } 
+        else
+        {
+            fputs(buffer, tempFile);
+        }
+    }
+
+    fclose(file);
+    fclose(tempFile);
+
+    remove("records.txt");
+    rename("temp.txt", "records.txt");
+
+    if (found)
+    {
+        printf("Booking updated successfully!\n");
+    }
+    else
+    {
+        printf("No booking found for %s.\n", name);
+    }
+}
+
+void cancle()
+{
+    FILE *file, *tempFile;
+    char buffer[256],name[100];
+    int found = 0;
+
+    printf("Enter First Name of the Booking to Delete: ");
+    scanf("%s", name);
+
+    file = fopen("records.txt", "r");
+    tempFile = fopen("temp.txt", "w");
+
+    if (file == NULL || tempFile == NULL)
+    {
+        printf("Error opening file!\n");
+        return;
+    }
+
+    while (fgets(buffer, sizeof(buffer), file) != NULL)
+    {
+        if (strstr(buffer,name) != NULL)
+        {
+            printf("Booking Deleted: %s", buffer);
+            found = 1;
+        } 
+        else
+        {
+            fputs(buffer, tempFile);
+        }
+    }
+
+    fclose(file);
+    fclose(tempFile);
+
+    remove("records.txt");
+    rename("temp.txt", "records.txt");
+
+    if (found)
+    {
+        printf("Booking deleted successfully!\n");
+    }
+    else
+    {
+        printf("No booking found for %s.\n", name);
+    }
+}
