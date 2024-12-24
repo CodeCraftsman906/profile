@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void roombook(void);
+void manage(void);
+void policy(void);
+void checkout(void);
+void main_menu(void);
+
+int main()
+{
+    while(1)
+    {
+        main_menu();
+    }
+    return 0;
+}
+
+void main_menu()
+{
+    int c;
+    printf("\t\t\t\tWelcome To Opal Heights\n");   
+    printf("1) Book a room \n");
+    printf("2) Manage Booking \n");
+    printf("3) Policy & Room Information\n");
+    printf("4) Checkout \n");
+    printf("5) Exit \n");
+    printf("Enter choice: ");
+    scanf("%d",&c);
+    switch(c)
+    {
+        case 1:
+        roombook();
+        break;
+        case 2:
+        manage();
+        break;
+        case 3:
+        policy();
+        break;
+        case 4:
+        checkout();
+        break;
+        case 5:
+        exit(0);
+        break;
+        default:
+        printf("Invalid choice");
+        break;
+    }
+
+}
