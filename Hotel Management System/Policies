@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+void main_menu(void);
+void policy()
+{
+    char ch[5];
+    printf("Policies");
+    printf("1)  Check-in time is 2:00 PM and check-out time is 12:00 PM noon. Subject to availability,early check-in and late check-out will be considered.\n");
+    printf("2)  Extra Person charges is. 350 per person.\n");
+    printf("3)  GST / Taxes charged extra and applicable as per government directives.\n");
+    printf("4)  100 percent advance Payment deposit at the time of Check in.\n");
+    printf("5)  We do not accept personal Cheques for payment.\n");
+    printf("6)  It is Mandatory for all customers and their visitor guests to share their ID cards. Foreign Nationals are required to present their passport and valid visa.\n");
+    printf("7)  Smoking, Alcohol, Gambling, Prostitution, contraband goods, drugs, etc are all strictly prohibited within the hotel premises.\n");
+    printf("8)  Non Vegetarian and / or Pungent food is not allowed in the hotel premises.\n");
+    printf("9)  We do not allow Pets.\n");
+    printf("10) We do not allow visitors entry to guest room.\n");
+    printf("11) Tariff- subject to change without prior notice.\n");
+    printf("12) Amendment / changes of bookings is allowed until only 72 hours (3 days) prior to arrival. Request will be considered as per availability.\n");
+    printf("13)	Children up-to 8 Years of age can stay free above 8 years will be charged as per extra adult rate.\n");
+    printf("14) The cancellation is free of charge 25 days prior to the date of arrival, after this time 90 percent of the room rate will be charged as cancellation fee.\n");
+    printf("15) We accept advance booking only upto 1 month with full tariff advance payment.\n");
+    printf("16)	Personal food and beverages are not allowed.\n");
+    printf("17) Disputes are subject to Jamnagar Jurisdictation.\n");
+    printf("18) THE MANAGEMENT RESERVES THE RIGHT TO ADD,OR ALTER OR AMEND ANY OF THE ABOVE policy, TERMS, CONDITIONS AND RULES at any point of time without prior notice.");
+    printf("\n");
+    printf("Room Information\n");
+    printf("Our standard hotel room includes a bed, a private bathroom, a television, air conditioning, a telephone,a wardrobe with hangers, complimentary toiletries, a hairdryer, towels, and usually Wi-Fi access\n");
+    printf("Our deluxe hotel room includes larger space, better views, upgraded amenities like larger TVs, premium toiletries, more luxurious bathroom fixtures, comfortable seating areas, a dedicated workspace,and access to complimentary breakfast compared to a standard room.\n"); 
+    printf("Our suite hotel room includes a separate living area in addition to a bedroom and bathroom, with amenities like a sofa bed, a small kitchen, and a dining table, providing a more spacious and apartment-like experience compared to a Deluxe hotel room\n");
+    printf("\n");
+    printf("\nEnter (exit) to go back to main menu");
+
+    scanf("%s",ch);
+    if (strcmp(ch,"exit") == 0)
+    {
+        main_menu();
+    }
+}
