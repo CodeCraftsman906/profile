@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <string.h>
+#include "Srecords.h"
+
+void checkout()
+{
+    printf("Bill\n");
+    int rooms=0, rrate=0, days=0;
+    FILE *file, *tempFile;
+    char buffer[256], name[100];
+    int found = 0;
+
+    printf("Enter First Name of the Booking to Checkout: ");
+    scanf("%s", name);
+
+    file = fopen("records.txt", "r");
+    tempFile = fopen("temp.txt", "w");
+    if (file == NULL || tempFile == NULL) 
+    {
+        printf("Error opening file!\n");
+        return;
+    }
+
+    while (fgets(buffer, sizeof(buffer), file) != NULL) 
+    {
+        if (strstr(buffer, name) != NULL)
+        {
+            if (book.adults % 2 == 0)
+            {
+                rooms = book.adults / 2;
+            } 
+            else 
+            {
+                rooms = (book.adults / 2) + 1;
+            }
+            days = book.day;
+                
+            if (strcmp(book.room, "Standard") == 0)
+            {
+                rrate = 4500 * days;
+            } 
+            else if (strcmp(book.room, "Deluxe") == 0)
+            {
+                rrate = 6000 * days;
+            } 
+            else if (strcmp(book.room, "Suite") == 0)
+            {
+                rrate = 8000 * days;
+            } 
+            else 
+            {
+                printf("Invalid room type entered.\n");
+                return;
+            }
+            printf("Amount to be paid: %d\n", rrate * book.rooms);
+            printf("Booking Checked Out: %s", buffer);
+            found = 1;
+        } 
+        else
+        {
+            fputs(buffer, tempFile);
+        }
+    }
+    fclose(file);
+    fclose(tempFile);
+    remove("records.txt");
+    rename("temp.txt", "records.txt");
+    if (!found)
+    {
+        printf("No booking found for %s.\n", name);
+    }
+}
