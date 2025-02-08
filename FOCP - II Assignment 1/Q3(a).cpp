@@ -7,6 +7,8 @@ using namespace std;
 
 main() {
 
+    // Taking string as an input from the user
+
     char string[20];
     int i,length,flag=0;
     cout<<"Enter any string";
@@ -14,6 +16,8 @@ main() {
     length=strlen(string);
 
     for(i=0;i<length;i++){
+
+        // Checking whether the string is palindrome or not
 
         if(string[i] != string[length-i-1]){
             flag = 1;
