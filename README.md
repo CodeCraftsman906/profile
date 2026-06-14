@@ -9,7 +9,7 @@
 
 - 🌱 I’m currently learning **C,C++,Python**
 
-- 📫 How to reach me **raghavg278@gmail.com**
+- 📫 How to reach me **24csu258@gmail.com**
 
 - ⚡ Fun fact **I love Marvel**
 
